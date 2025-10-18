@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import numpy as np
 import pandas as pd
-import matlab.engine
+#import matlab.engine
 import threading
 import os
 import time
@@ -247,6 +247,7 @@ class DrawingApp:
        
 
     def setup_loading_interface(self):
+        """
         self.loading_frame = ttk.Frame(self.root)
         self.loading_frame.pack(fill="both", expand=True)
 
@@ -278,7 +279,7 @@ class DrawingApp:
         self.subtext_label.pack(pady=(5, 0))
 
         self.animate_loading()
-
+"""
     def animate_loading(self):
         if hasattr(self, 'canvas_loading') and self.canvas_loading.winfo_exists():
             self.loading_angle = (self.loading_angle + 10) % 360
@@ -302,6 +303,7 @@ class DrawingApp:
         self.root.after(0, lambda: self.loading_label.config(text=text))
 
     def process_videos(self, participants):
+        """
         try:
             self.update_loading_text("Starting MATLAB engine...")
             self.eng = matlab.engine.start_matlab()
@@ -328,7 +330,7 @@ class DrawingApp:
             #self.root.after(0, self.launch_drawing_interface)
         except Exception as e:
             self.update_loading_text(f"Error: {str(e)}")
-
+"""
 
 
     def launch_drawing_interface(self):
@@ -676,4 +678,5 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = DrawingApp(root)
     root.mainloop()
+
 
