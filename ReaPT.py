@@ -396,13 +396,16 @@ class DrawingApp:
         if not matching_key:
             matching_key = f"participant_{participant_id}"
 
+        save_dir = "participants_palates"
+        os.makedirs(save_dir, exist_ok=True)
+
+        filename = os.path.join(save_dir, f"{matching_key}.csv")
+
         df = pd.DataFrame(p_line)
-        filename = os.path.join("participants_palates", f"{matching_key}_palate.csv")
         df.to_csv(filename, header=False, index=False)
 
         self.finalized[participant_id] = True
         self.original_points[participant_id] = p_line.copy()
-
 
 
     def start_drawing(self, event):
@@ -673,3 +676,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = DrawingApp(root)
     root.mainloop()
+
